@@ -6,6 +6,6 @@
     "tailwindcss": "^4.1.17"
   },
   "scripts": {
-    "serve": "bun run --hot ./src/index.html --outdir ./dist"
+    "serve": "bun run --hot ./build.ts"
   }
 }
