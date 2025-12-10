@@ -1,0 +1,12 @@
+{
+	"gifts": [
+		{
+			"name": "Ember Charging Coaster 2",
+			"picture": "./img/ember-coaster-copper.png",
+			"vendor": "eBay",
+			"detail": "Copper",
+			"price": "$40",
+			"url": "https://www.ebay.com/itm/197078190774"
+		}
+	]
+}
