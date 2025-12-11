@@ -12,31 +12,69 @@
 			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
 			rel="stylesheet"
 		/>
+		<script src="./script.js"></script>
 	</head>
 	<body>
-		<div class="w-full mx-auto max-w-4xl p-fluid-4">
-			<h1 class="text-fluid-6xl font-display mb-4">Wishlist25</h1>
+		<div class="w-full mx-auto max-w-7xl p-fluid-4">
+			<h1 class="text-fluid-6xl font-display leading-none">
+				Paul's<br />Wishlist
+			</h1>
+			<h2 class="text-fluid-base font-semibold uppercase leading-none my-2">
+				Winter 25-26
+			</h2>
 			<section
 				id="wishlist"
-				class="grid grid-cols-4"
-				x-data="{ wishlist: [] }"
-				x-init="wishlist = await (await fetch('./data.json')).json()"
+				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-20 gap-x-6 gap-y-20"
+				x-init="$store.wishlist.data = await (await fetch('./data.json')).json()"
 			>
-				<template x-for="gift in wishlist.gifts">
-					<article class="gift-card">
-						<img
-							:src="decodeBlurHash(gift.blurhash)"
-							:alt="'photograph of ' + gift.name"
-						/>
-						<h2 class="gift-name" x-text="gift.name"></h2>
-						<div class="gift-vendor" x-text="gift.vendor"></div>
-						<div class="gift-detail" x-text="gift.detail"></div>
-						<div class="gift-price" x-text="gift.price"></div>
-						<div class="gift-url" x-text="gift.url"></div>
-					</article>
+				<template x-for="gift in $store.wishlist.data.gifts" :key="gift.url">
+					<a
+						:href="gift.url"
+						target="_blank"
+						x-data="{
+							thumbHashSrc: $store.wishlist.decodeThumbHash(gift.thumbHash),
+							actualImageSrc: gift.picture,
+							preload(url, el) {
+								if(el.hasAttribute('data-loaded')) { return }
+								const img = new Image();
+								img.src = url;
+								img.onload = () => {
+									el.src = url;
+									el.setAttribute('data-loaded', true);
+								};
+							}
+						}"
+					>
+						<article class="gift-card flex flex-col group gap-2">
+							<div class="z-stack mb-2">
+								<img
+									:src="thumbHashSrc"
+									@load="preload(actualImageSrc, $el);"
+									:alt="'Photograph of ' + gift.name"
+									class="w-full bg-slate-200 group-hover:bg-slate-300 aspect-square object-contain rounded transition-colors"
+								/>
+								<div
+									class="gift-price text-xl font-light self-end place-self-end m-3 px-2 bg-white rounded-full"
+									x-text="gift.price"
+								></div>
+							</div>
+							<h2
+								class="gift-name font-semibold text-fluid-xl leading-none px-1"
+								x-text="gift.name"
+							></h2>
+							<div
+								class="gift-detail font-medium uppercase px-1"
+								x-text="gift.detail"
+							></div>
+
+							<div
+								class="gift-vendor uppercase text-sm font-medium px-1"
+								x-text="gift.vendor + ' ↗'"
+							></div>
+						</article>
+					</a>
 				</template>
 			</section>
 		</div>
-		<script defer src="./script.js"></script>
 	</body>
 </html>

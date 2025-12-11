@@ -1,12 +1,36 @@
 {
 	"gifts": [
 		{
-			"name": "Ember Charging Coaster 2",
+			"name": "Ember charging coaster",
 			"picture": "./img/ember-coaster-copper.png",
 			"vendor": "eBay",
-			"detail": "Copper",
+			"detail": "v2 Copper",
 			"price": "$40",
 			"url": "https://www.ebay.com/itm/197078190774"
+		},
+		{
+			"name": "Ember charging coaster",
+			"picture": "./img/ember-coaster-white.png",
+			"vendor": "eBay",
+			"detail": "v2 White",
+			"price": "$40",
+			"url": "https://amazon.com/dp/B085KS9L4M"
+		},
+		{
+			"name": "Boot jack",
+			"picture": "./img/boothorn.png",
+			"vendor": "Tecovas",
+			"detail": "",
+			"price": "$95",
+			"url": "https://www.tecovas.com/products/boot-jack-ii"
+		},
+		{
+			"name": "Honey pot",
+			"picture": "./img/honeypot.png",
+			"vendor": "Alessi SpA",
+			"detail": "Honey jar with dipper",
+			"price": "$195",
+			"url": "https://us.alessi.com/products/honey-pot-honey-jar-with-dipper"
 		}
 	]
 }

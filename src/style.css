@@ -1,94 +1,188 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: "FK Raster Roman Compact Smooth";
-    src: url("./FKRasterRomanCompact-Smooth.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
+	font-family: "FK Raster Roman Compact Smooth";
+	src: url("./FKRasterRomanCompact-Smooth.woff2") format("woff2");
+	font-weight: normal;
+	font-style: normal;
 }
 
 @theme {
-    --font-sans: "Inter", system-ui, sans-serif;
-    --font-display:
-        "FK Raster Roman Compact Smooth", Georgia, system-ui, sans-serif;
+	--font-sans: "Inter", system-ui, sans-serif;
+	--font-display:
+		"FK Raster Roman Compact Smooth", Georgia, system-ui, sans-serif;
 
-    /* generated from https://royalfig.github.io/fluid-typography-calculator/ */
-    /* min viewport 20rem, max viewport 90rem */
-    --spacing-fluid-1: clamp(0.25rem, 0.03571rem + 1.071vw, 1rem);
-    --spacing-fluid-2: clamp(0.5rem, 0.07142rem + 2.143vw, 2rem);
-    --spacing-fluid-3: clamp(0.75rem, 0.107rem + 3.214vw, 3rem);
-    --spacing-fluid-4: clamp(1rem, 0.143rem + 4.286vw, 4rem);
+	/* generated from https://royalfig.github.io/fluid-typography-calculator/ */
+	/* min viewport 20rem, max viewport 90rem */
+	--spacing-fluid-1: clamp(0.25rem, 0.03571rem + 1.071vw, 1rem);
+	--spacing-fluid-2: clamp(0.5rem, 0.07142rem + 2.143vw, 2rem);
+	--spacing-fluid-3: clamp(0.75rem, 0.107rem + 3.214vw, 3rem);
+	--spacing-fluid-4: clamp(1rem, 0.143rem + 4.286vw, 4rem);
 
-    /*
+	/*
     where x=0 at --raw-base, and y is size,
 
     y = 1.000271 + 0.1070978*x + 0.001082251*x^2 + 0.005997475*x^3
 
     approximately (cubic fit from mycurvefit.com)
     */
-    --raw-xs: 0.75;
-    --raw-sm: 0.875;
-    --raw-base: 1;
-    --raw-lg: 1.125;
-    --raw-xl: 1.25;
-    --raw-2xl: 1.5;
-    --raw-3xl: 1.875;
-    --raw-4xl: 2.25;
-    --raw-5xl: 3; /* x = 6 */
-    --raw-6xl: 3.875;
+	--raw-xs: 0.75;
+	--raw-sm: 0.875;
+	--raw-base: 1;
+	--raw-lg: 1.125;
+	--raw-xl: 1.25;
+	--raw-2xl: 1.5;
+	--raw-3xl: 1.875;
+	--raw-4xl: 2.25;
+	--raw-5xl: 3; /* x = 6 */
+	--raw-6xl: 3.875;
 
-    --text-fluid-sm: clamp(
-        calc(1rem * var(--raw-sm)),
-        calc(0.8rem * var(--raw-sm) + var(--raw-sm) * 1vw),
-        calc(2rem * var(--raw-sm))
-    );
-    --text-fluid-base: clamp(
-        calc(1rem * var(--raw-base)),
-        calc(0.928rem * var(--raw-base) + var(--raw-base) * 0.357vw),
-        calc(1.25rem * var(--raw-base))
-    );
-    --text-fluid-lg: clamp(
-        calc(1rem * var(--raw-lg)),
-        calc(0.8rem * var(--raw-lg) + var(--raw-lg) * 1vw),
-        calc(2rem * var(--raw-lg))
-    );
-    --text-fluid-xl: clamp(
-        calc(1rem * var(--raw-xl)),
-        calc(0.8rem * var(--raw-xl) + var(--raw-xl) * 1vw),
-        calc(2rem * var(--raw-xl))
-    );
-    --text-fluid-2xl: clamp(
-        calc(1rem * var(--raw-2xl)),
-        calc(0.8rem * var(--raw-2xl) + var(--raw-2xl) * 1vw),
-        calc(2rem * var(--raw-2xl))
-    );
-    --text-fluid-3xl: clamp(
-        calc(1rem * var(--raw-3xl)),
-        calc(0.8rem * var(--raw-3xl) + var(--raw-3xl) * 1vw),
-        calc(2rem * var(--raw-3xl))
-    );
-    --text-fluid-4xl: clamp(
-        calc(1rem * var(--raw-4xl)),
-        calc(0.8rem * var(--raw-4xl) + var(--raw-4xl) * 1vw),
-        calc(2rem * var(--raw-4xl))
-    );
-    --text-fluid-5xl: clamp(
-        calc(1rem * var(--raw-5xl)),
-        calc(0.8rem * var(--raw-5xl) + var(--raw-5xl) * 1vw),
-        calc(2rem * var(--raw-5xl))
-    );
-    --text-fluid-6xl: clamp(
-        calc(1rem * var(--raw-6xl)),
-        calc(0.8rem * var(--raw-6xl) + var(--raw-6xl) * 1vw),
-        calc(2rem * var(--raw-6xl))
-    );
+	--text-fluid-sm: clamp(
+		calc(1rem * var(--raw-sm)),
+		calc(0.8rem * var(--raw-sm) + var(--raw-sm) * 1vw),
+		calc(2rem * var(--raw-sm))
+	);
+	--text-fluid-base: clamp(
+		calc(1rem * var(--raw-base)),
+		calc(0.928rem * var(--raw-base) + var(--raw-base) * 0.357vw),
+		calc(1.25rem * var(--raw-base))
+	);
+	--text-fluid-lg: clamp(
+		calc(1rem * var(--raw-lg)),
+		calc(0.8rem * var(--raw-lg) + var(--raw-lg) * 1vw),
+		calc(2rem * var(--raw-lg))
+	);
+	--text-fluid-xl: clamp(
+		calc(1rem * var(--raw-xl)),
+		calc(0.8rem * var(--raw-xl) + var(--raw-xl) * 1vw),
+		calc(2rem * var(--raw-xl))
+	);
+	--text-fluid-2xl: clamp(
+		calc(1rem * var(--raw-2xl)),
+		calc(0.8rem * var(--raw-2xl) + var(--raw-2xl) * 1vw),
+		calc(2rem * var(--raw-2xl))
+	);
+	--text-fluid-3xl: clamp(
+		calc(1rem * var(--raw-3xl)),
+		calc(0.8rem * var(--raw-3xl) + var(--raw-3xl) * 1vw),
+		calc(2rem * var(--raw-3xl))
+	);
+	--text-fluid-4xl: clamp(
+		calc(1rem * var(--raw-4xl)),
+		calc(0.8rem * var(--raw-4xl) + var(--raw-4xl) * 1vw),
+		calc(2rem * var(--raw-4xl))
+	);
+	--text-fluid-5xl: clamp(
+		calc(1rem * var(--raw-5xl)),
+		calc(0.8rem * var(--raw-5xl) + var(--raw-5xl) * 1vw),
+		calc(2rem * var(--raw-5xl))
+	);
+	--text-fluid-6xl: clamp(
+		calc(1rem * var(--raw-6xl)),
+		calc(0.8rem * var(--raw-6xl) + var(--raw-6xl) * 1vw),
+		calc(2rem * var(--raw-6xl))
+	);
 }
 
 @layer base {
-    body {
-        font-optical-sizing: auto;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        font-smooth: always;
-    }
+	body {
+		font-optical-sizing: auto;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+		font-smooth: always;
+	}
+
+	/* for overlaying all children */
+	:nth-child(1) {
+		--nth-child: 1;
+	}
+
+	:nth-child(2) {
+		--nth-child: 2;
+	}
+
+	:nth-child(3) {
+		--nth-child: 3;
+	}
+
+	:nth-child(4) {
+		--nth-child: 4;
+	}
+
+	:nth-child(5) {
+		--nth-child: 5;
+	}
+
+	:nth-child(6) {
+		--nth-child: 6;
+	}
+
+	:nth-child(7) {
+		--nth-child: 7;
+	}
+
+	:nth-child(8) {
+		--nth-child: 8;
+	}
+
+	:nth-child(9) {
+		--nth-child: 9;
+	}
+
+	:nth-child(10) {
+		--nth-child: 10;
+	}
+
+	:nth-child(11) {
+		--nth-child: 11;
+	}
+
+	:nth-child(12) {
+		--nth-child: 12;
+	}
+
+	:nth-child(13) {
+		--nth-child: 13;
+	}
+
+	:nth-child(14) {
+		--nth-child: 14;
+	}
+
+	:nth-child(15) {
+		--nth-child: 15;
+	}
+
+	:nth-child(16) {
+		--nth-child: 16;
+	}
+
+	:nth-child(17) {
+		--nth-child: 17;
+	}
+
+	:nth-child(18) {
+		--nth-child: 18;
+	}
+
+	:nth-child(19) {
+		--nth-child: 19;
+	}
+
+	:nth-child(20) {
+		--nth-child: 20;
+	}
+
+	.z-stack {
+		display: grid;
+
+		& > * {
+			grid-row: 1;
+			grid-column: 1;
+		}
+
+		:nth-child(n) {
+			z-index: var(--nth-child);
+		}
+	}
 }

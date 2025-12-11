@@ -1,10 +1,12 @@
 import { cpSync } from "node:fs";
 import tailwind from "bun-plugin-tailwind";
-import html from "./src/index.html" with { type: "text" }; // for hmr
-import path from "node:path";
+const path = require("node:path");
 import { readdir } from "node:fs/promises";
 import sharp from "sharp";
 import { mkdirp } from "mkdirp";
+
+import html from "./src/index.html" with { type: "text" }; // for hmr
+console.log(html.length);
 
 await Bun.build({
 	entrypoints: ["./src/index.html"],
@@ -19,8 +21,27 @@ await Bun.build({
 await mkdirp("./dist/img");
 const files = await readdir("./src/img");
 let fileMap = {}; // ./src/img/test.png => ./dist/img/test.avif
+const formats = new Set([
+	".png",
+	".jpg",
+	".jpeg",
+	".webp",
+	".avif",
+	".gif",
+	".tiff",
+	".bmp",
+]);
 for (const file of files) {
 	const srcPath = path.join("./src/img", file);
+	if (!formats.has(path.parse(srcPath).ext)) {
+		console.log(
+			"skipping non image file: ",
+			srcPath,
+			"ext",
+			path.parse(srcPath).ext,
+		);
+		continue;
+	}
 
 	const dstParse = path.parse(path.join("./dist/img", file)); // dest with wrong extension
 	const dstPath = path.join(dstParse.dir, dstParse.name + ".avif");
@@ -31,23 +52,34 @@ for (const file of files) {
 console.log(fileMap);
 
 // load src/data.json and add import images, add blurhash
-import data from "./src/data.json";
-import { encode } from "blurhash";
+import datajson from "./src/data.json";
+import { rgbaToThumbHash } from "thumbhash";
 
-let dataOut = structuredClone(data);
+let dataOut = structuredClone(datajson);
 dataOut.gifts = []; // empty and add copies as processed
 
-const encodeImageToBlurhash = async (path) => {
-	const metadata = await sharp(path).metadata();
-	const buffer = await sharp(path).raw().toBuffer();
-	return encode(buffer, metadata.width, metadata.height, 4, 4);
+const encodeImageToThumbHash = async (imagePath: string) => {
+	// thumbhash requires to fit within 100x100
+	const file = sharp(imagePath).resize(100, 100, {
+		fit: sharp.fit.inside,
+		withoutEnlargement: true,
+	});
+
+	const img = await file.raw().toBuffer({ resolveWithObject: true });
+
+	const info = img.info;
+	const data: Uint8Array = img.data;
+
+	const { width, height, channels } = info;
+	const hash: Uint8Array = rgbaToThumbHash(width, height, data);
+	return Buffer.from(hash).toString("base64");
 };
 
-for (const giftIn of data.gifts) {
+for (const giftIn of datajson.gifts) {
 	let giftOut = structuredClone(giftIn);
 	if (giftIn.picture != null) {
 		const imgPath = path.join("./src", giftIn.picture);
-		giftOut["blurHash"] = await encodeImageToBlurhash(imgPath);
+		giftOut["thumbHash"] = await encodeImageToThumbHash(imgPath);
 		// rewrite image path to optimized version
 		// path may not be exact, e.g. compare ./img/test.png == img/test.png
 		giftOut.picture = fileMap[path.relative(".", giftIn.picture)];
@@ -56,14 +88,17 @@ for (const giftIn of data.gifts) {
 	}
 }
 
+// write dataOut to dist/data.json
+await Bun.write("./dist/data.json", JSON.stringify(dataOut));
+
 const server = Bun.serve({
 	port: 3000,
 	async fetch(req) {
-		const path = new URL(req.url).pathname;
+		const filePath = new URL(req.url).pathname;
 		let fullPath = path.join(
 			"./dist",
-			path,
-			path.endsWith("/") ? "index.html" : "",
+			filePath,
+			filePath.endsWith("/") ? "index.html" : "",
 		);
 		const file = Bun.file(fullPath);
 		if (await file.exists()) {
