@@ -10,6 +10,6 @@
 	},
 	"scripts": {
 		"serve": "bun install && bun run --hot ./build.ts",
-		"build": "bun install && bun build ./build.ts"
+		"build": "bun install && bun build --target bun ./build.ts"
 	}
 }
