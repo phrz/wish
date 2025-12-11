@@ -9,6 +9,7 @@
 		"thumbhash": "^0.1.1"
 	},
 	"scripts": {
-		"serve": "bun install && bun run --hot ./build.ts"
+		"serve": "bun install && bun run --hot ./build.ts",
+		"build": "bun install && bun run ./build.ts"
 	}
 }
