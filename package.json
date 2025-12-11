@@ -9,8 +9,8 @@
 		"thumbhash": "^0.1.1"
 	},
 	"scripts": {
-		"serve": "IS_BUILD=false bun install && bun run --hot ./build.ts",
-		"build": "IS_BUILD=true bun install && bun run --target bun ./build.ts"
+		"serve": "bun install && IS_BUILD=false bun run --hot ./build.ts",
+		"build": "bun install && IS_BUILD=true bun run --target bun ./build.ts"
 	},
 	"devDependencies": {
 		"@types/bun": "^1.3.4",

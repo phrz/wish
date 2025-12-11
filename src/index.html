@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Wishlist25</title>
-		<link rel="stylesheet" href="./style.css" />
+		<link rel="stylesheet" href="./css/style.css" />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +14,35 @@
 		/>
 		<script src="./script.js"></script>
 	</head>
-	<body>
+	<body class="text-black bg-neutral-50 dark:text-white dark:bg-neutral-900">
+		<div
+			class="fixed h-min top-0 left-0 right-0 w-full border-b py-2 uppercase font-semibold z-50"
+			data-marquee
+			data-marquee-gap="2"
+			data-marquee-duration="25"
+			data-marquee-fade="2"
+			style="mix-blend-mode: difference;filter:invert(1"
+		>
+			<section>
+				<p class="text-nowrap pl-10">
+					I also really like anything having to do with seals 🦭, くちぱっち
+					(Kuchipatchi), food (<em>viz.</em> hazelnuts, pistachios, chocolate,
+					malt, jerky, coffee, foreign sweets, in no particular order), gadgets
+					(like the Inspector, a/k/a «go-go gadget!»), and art, but I have to
+					like it (<em>caveat emptor</em>).
+				</p>
+			</section>
+
+			<section>
+				<p class="text-nowrap pl-10">
+					I also really like anything having to do with seals 🦭, くちぱっち
+					(Kuchipatchi), food (<em>viz.</em> hazelnuts, pistachios, chocolate,
+					malt, jerky, coffee, foreign sweets, in no particular order), gadgets
+					(like the Inspector, a/k/a «go-go gadget!»), and art, but I have to
+					like it (<em>caveat emptor</em>).
+				</p>
+			</section>
+		</div>
 		<div class="w-full mx-auto max-w-7xl p-fluid-4">
 			<h1 class="text-fluid-6xl font-display leading-none">
 				Paul's<br />Wishlist
@@ -24,7 +52,7 @@
 			</h2>
 			<section
 				id="wishlist"
-				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-20 gap-x-6 gap-y-20"
+				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-20 gap-x-6 gap-y-20"
 				x-init="$store.wishlist.data = await (await fetch('./data.json')).json()"
 			>
 				<template x-for="gift in $store.wishlist.data.gifts" :key="gift.url">
@@ -51,10 +79,10 @@
 									:src="thumbHashSrc"
 									@load="preload(actualImageSrc, $el);"
 									:alt="'Photograph of ' + gift.name"
-									class="w-full bg-slate-200 group-hover:bg-slate-300 aspect-square object-contain rounded transition-colors"
+									class="w-full group-hover:bg-neutral-300 dark:group-hover:bg-neutral-700 aspect-square object-contain border transition-colors"
 								/>
 								<div
-									class="gift-price text-xl font-light self-end place-self-end m-3 px-2 bg-white rounded-full"
+									class="gift-price text-xl font-light self-end place-self-end m-3 px-2 bg-white dark:bg-transparent rounded-full border"
 									x-text="gift.price"
 								></div>
 							</div>

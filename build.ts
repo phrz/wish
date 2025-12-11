@@ -91,7 +91,7 @@ for (const giftIn of datajson.gifts) {
 // write dataOut to dist/data.json
 await Bun.write("./dist/data.json", JSON.stringify(dataOut));
 
-if (process.env.IS_BUILD == "false") {
+if (process.env.IS_BUILD !== "true") {
 	const server = Bun.serve({
 		port: 3000,
 		async fetch(req) {
