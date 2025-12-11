@@ -91,22 +91,23 @@ for (const giftIn of datajson.gifts) {
 // write dataOut to dist/data.json
 await Bun.write("./dist/data.json", JSON.stringify(dataOut));
 
-const server = Bun.serve({
-	port: 3000,
-	async fetch(req) {
-		const filePath = new URL(req.url).pathname;
-		let fullPath = path.join(
-			"./dist",
-			filePath,
-			filePath.endsWith("/") ? "index.html" : "",
-		);
-		const file = Bun.file(fullPath);
-		if (await file.exists()) {
-			return new Response(file);
-		} else {
-			return new Response(`${fullPath} Not Found`, { status: 404 });
-		}
-	},
-});
-
-console.log(`Server running on port ${server.port}`);
+if (process.env.IS_BUILD == "false") {
+	const server = Bun.serve({
+		port: 3000,
+		async fetch(req) {
+			const filePath = new URL(req.url).pathname;
+			let fullPath = path.join(
+				"./dist",
+				filePath,
+				filePath.endsWith("/") ? "index.html" : "",
+			);
+			const file = Bun.file(fullPath);
+			if (await file.exists()) {
+				return new Response(file);
+			} else {
+				return new Response(`${fullPath} Not Found`, { status: 404 });
+			}
+		},
+	});
+	console.log(`Server running on port ${server.port}`);
+}
