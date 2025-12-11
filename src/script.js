@@ -5,11 +5,11 @@ window.Alpine = Alpine;
 
 function decodeThumbHash(thumbHash) {
 	const bin = Uint8Array.fromBase64(thumbHash);
-	console.log("thumbhash", thumbHash, "=>", bin);
+	// console.log("thumbhash", thumbHash, "=>", bin);
 
-	const res = thumbHashToDataURL(bin);
-	console.log(res);
-	return res;
+	// const res = thumbHashToDataURL(bin);
+	// console.log(res);
+	return thumbHashToDataURL(bin);
 }
 
 document.addEventListener("alpine:init", () => {

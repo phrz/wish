@@ -1,8 +1,8 @@
 @keyframes marquee-x {
-	from {
+	0% {
 		transform: translateX(var(--scroll-start));
 	}
-	to {
+	100% {
 		transform: translateX(var(--scroll-end));
 	}
 }
@@ -11,16 +11,17 @@
 	@apply flex overflow-hidden select-none gap-(--gap);
 
 	/* [cite] https://codepen.io/hexagoncircle/pen/wvmjomb */
-	--gap: attr(data-marquee-gap rem, 1rem);
-	--duration: attr(data-marquee-duration s, 10s);
-	--scroll-start: 0;
+	--scroll-start: 0%;
 	--scroll-end: calc(-100% - var(--gap));
 	--d: attr(data-marquee-fade rem, 0.25rem);
 
 	& > section {
 		@apply flex items-center justify-around gap-(--gap) shrink-1;
 		/*padding-inline: var(--gap);*/
-		animation: marquee-x var(--duration) linear infinite;
+		animation-name: marquee-x;
+		animation-duration: inherit;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
