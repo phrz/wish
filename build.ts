@@ -77,15 +77,19 @@ const encodeImageToThumbHash = async (imagePath: string) => {
 
 for (const giftIn of datajson.gifts) {
 	let giftOut = structuredClone(giftIn);
-	if (giftIn.picture != null) {
+	if (
+		giftIn.picture !== null &&
+		giftIn.picture !== undefined &&
+		!giftIn.picture.startsWith("data:")
+	) {
 		const imgPath = path.join("./src", giftIn.picture);
 		giftOut["thumbHash"] = await encodeImageToThumbHash(imgPath);
 		// rewrite image path to optimized version
 		// path may not be exact, e.g. compare ./img/test.png == img/test.png
 		giftOut.picture = fileMap[path.relative(".", giftIn.picture)];
 		console.log(giftOut);
-		dataOut.gifts.push(giftOut);
 	}
+	dataOut.gifts.push(giftOut);
 }
 
 // write dataOut to dist/data.json

@@ -31,6 +31,63 @@
 			"detail": "Honey jar with dipper",
 			"price": "$195",
 			"url": "https://us.alessi.com/products/honey-pot-honey-jar-with-dipper"
+		},
+		{
+			"name": "Seals",
+			"picture": "./img/seal.png",
+			"vendor": null,
+			"detail": null,
+			"price": "theme",
+			"url": "https://en.wikipedia.org/wiki/Pinniped"
+		},
+		{
+			"name": "Bedroom Lighting",
+			"picture": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><text x='128' y='140' text-anchor='middle' alignment-baseline='middle' font-size='100'>💡</text></svg>",
+			"vendor": null,
+			"detail": "redesign and improve",
+			"price": "project",
+			"url": null
+		},
+		{
+			"name": "The Book—The Ultimate Guide to Rebuilding a Civilization",
+			"italic": true,
+			"picture": "./img/thebook.png",
+			"vendor": "Amazon",
+			"detail": "by Hungry Minds",
+			"price": "$120",
+			"url": "https://www.amazon.com/dp/B0CJCKGRW1"
+		},
+		{
+			"name": "New dispenser bird feeder + fix Bird Buddy",
+			"picture": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><text x='128' y='140' text-anchor='middle' alignment-baseline='middle' font-size='100'>🐦</text></svg>",
+			"vendor": "tweet",
+			"detail": "chirp",
+			"price": "project",
+			"url": null
+		},
+		{
+			"name": "Jerky",
+			"picture": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><text x='128' y='140' text-anchor='middle' alignment-baseline='middle' font-size='100'>🍖</text></svg>",
+			"vendor": "Various",
+			"detail": null,
+			"price": "$🍗",
+			"url": null
+		},
+		{
+			"name": "USB Type C CC resistor fixer",
+			"picture": "./img/ccresistorfixer.png",
+			"vendor": "Adafruit",
+			"detail": "Like 10x of these",
+			"price": "$45",
+			"url": "https://www.adafruit.com/product/6323"
+		},
+		{
+			"name": "Connect ZBT-2",
+			"picture": "./img/zbt2.png",
+			"vendor": "Amazon",
+			"detail": "Zigbee/Thread Antenna",
+			"price": "$65",
+			"url": "https://www.amazon.com/dp/B0G34ZTW51"
 		}
 	]
 }
